@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { supabase } from "@/lib/supabase"; // Ajusta ruta si es necesario (ej. ../lib/supabase)
-import { LogOut, Key } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+import { LogOut, Key, User } from "lucide-react";
 
 export function Navbar() {
   const [userEmail, setUserEmail] = useState<string | null>(null);
@@ -78,8 +78,15 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             {userEmail ? (
               <div className="flex items-center gap-2 bg-slate-50 px-3 py-1.5 rounded-full border border-slate-200 text-xs">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span className="font-semibold text-slate-700 truncate max-w-[150px]">{userEmail}</span>
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <Link
+                  href="/perfil"
+                  className="font-semibold text-slate-700 hover:text-sky-600 transition truncate max-w-[130px] flex items-center gap-1"
+                  title="Ir a Mi Perfil & Membresía"
+                >
+                  <User className="w-3 h-3 text-slate-400 inline" />
+                  {userEmail}
+                </Link>
                 <button
                   type="button"
                   onClick={() => setMostrarModalPwd(true)}
